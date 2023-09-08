@@ -2,6 +2,10 @@ FROM node:18-alpine
 
 LABEL maintainer="Sinan Yücekaya <sinanyucekaya@gmail.com>"
 
+RUN echo "fs.inotify.max_user_instances=524288" >> /etc/sysctl.conf
+RUN echo "fs.inotify.max_user_watches=524288" >> /etc/sysctl.conf
+RUN echo "fs.inotify.max_queued_events=524288" >> /etc/sysctl.conf
+
 RUN apk update && apk upgrade && apk add git
 
 RUN git clone https://github.com/keplergl/kepler.gl.git
